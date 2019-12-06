@@ -11,3 +11,24 @@
 </ol>
 <img src="${}">
 */
+
+window.addEventListener("load", function() {
+
+   // let button = document.getElementById("formSubmit");
+   // button.addEventListener('click', function(event) {
+   //    let input = document.getElementById("string");
+   //    console.log(input.value);
+   // })
+
+   let launchForm = document.getElementById("launchForm");
+   launchForm.addEventListener("submit", function(event) {      
+      let pilotNameInput = document.getElementById("pilotName");
+      let copilotNameInput = document.getElementById("copilotName");
+      let fuelLevelInput = document.getElementById("fuelLevel");
+      let cargoMassInput = document.getElementById("cargoMass");
+      if (pilotNameInput === "" || copilotNameInput === "" || fuelLevelInput === "" || cargoMassInput === "") 
+         alert("All fields are required");
+      event.preventDefault();
+   })
+   alert();
+})
