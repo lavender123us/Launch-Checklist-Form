@@ -12,14 +12,7 @@
 <img src="${}">
 */
 
-window.addEventListener("load", function() {
-
-   // let button = document.getElementById("formSubmit");
-   // button.addEventListener('click', function(event) {
-   //    let input = document.getElementById("string");
-   //    console.log(input.value);
-   // })
-
+window.addEventListener("DOMContentLoaded", function init() {
    
    let form = document.getElementById("launchForm");
 
@@ -36,61 +29,56 @@ window.addEventListener("load", function() {
          alert("All fields are required");
       
       if (pilotNameInput != String() || copilotNameInput != String())
+      //if (isNaN(pilotNameInput || copilotNameInput)===false)
          alert("Input shoud be a string.");
 
       if (fuelLevelInput != Number() || cargoMassInput != Number())
-         alert("Input shoud be a number.")
+      //if (isNaN(fuelLevelInput || cargoMassInput)===true)
+         alert("Input shoud be a number.");
 
    })
 
    // let statusCheck = document.getElementById("faultyItems");
-   // statusCheck.addEventListener("load", function(event) {
+   // statusCheck.addEventListener("load", function(event) {      
+
+      let pilotCheck = document.getElementById("pilotStatus");
+      pilotCheck.addEventListener("input", function(event) {
+         pilotStatus.innerHTML = `Pilot ${pilotNameInput }Ready`
+         console.log(pilotStatus.innerHTML);
+      })
+
+      let copilotCheck = document.getElementById("copilotStatus");
+      copilotCheck.innerHTML = `Copilot ${copilotNameInput }Ready`
+
+      //let launchStatusCheck = document.getElementById("launchStatus");
+
+      let fuelCheck = document.getElementById("fuelLevel");
+      let fuelStatus = document.getElementById("fuelStatus");
+
+      if (fuelLevelInput.value < 10000) {             
+         fuelCheck.addEventListener("submit", function changeText(event) {         
+         fuelStatus.textContent = "There is not enough fuel for the journey.";
+         document.getElementById("fuelStatus").style.visibility = "visible";            
+         })
+      }
       
-   // })
-
-   // let pilotCheck = document.getElementById("pilotStatus");
-   // pilotCheck.addEventListener("", function(event) {
-
-   // })
-
-   // let copilotCheck = document.getElementById("copolotStatus");
-   // copilotCheck.addEventListener("", function(event) {
-
-   // })
- 
-   let launchStatus = document.getElementById("launchStatus");
-
-   let fuelCheck = document.getElementById("fuelLevel");
+      let cargoCheck = document.getElementById("cargoMass");
+      let cargoStatus = document.getElementById("cargoStatus");   
    
-   let fuelStatus = document.getElementsById("fuelStatus");
+      if (cargoMassInput.value > 10000) {
+         cargoCheck.addEventListener("submit", function changeText(event) {         
+         cargoStatus.textContent = "There is too much mass for the shuttle to take off.";         
+         document.getElementById("cargoStatus").style.visibility = "visible";
+         })
+      }      
 
-   let cargoCheck = document.getElementById("cargoMass");
-
-   let cargoStatus = document.getElementById("cargoStatus");
-
-
-   if (fuelLevelInput.value < 10000) {
-      document.getElementById("fuelStatus").style.visibility = "visible";      
-
-      fuelCheck.addEventListener("click", function changeText(event) {
-         
-         fuelStatus.textContent = "There is not enough fuel for the journey.";                
-      })
-   }   
+      if (fuelLevelInput.value < 10000 || cargoMassInput.value > 10000) {   
+         launchStatus.addEventListener("submit", function changeText(event) {
+            launchStatus.textContent = "Shuttle not ready for launch";
+            launchStatus.style.color = 'red';
+         })
+      }
+   //})
    
-   if (cargoMassInput.value > 10000) {
-      document.getElementById("fuelStatus").style.visibility = "visible";
-
-      cargoCheck.addEventListener("click", function changeText(event) {         
-         cargoStatus.textContent = "There is too much mass for the shuttle to take off.";
-      })
-
-   }      
-
-   if (fuelLevelInput.value < 10000 && cargoMassInput.value > 10000) {      
-      launchStatus.textContent = "Shuttle not ready for launch";
-      launchStatus.style.color = 'red';
-   }
-
    event.preventDefault();
 })
