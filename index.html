@@ -7,8 +7,7 @@
     </head>
     <body>
         <h1>Launch Checklist Form</h1>
-        <div id="missionTarget">
-            
+        <div id="missionTarget">            
             <!-- Fetch some planetary data -->
             <h2>Mission Destination</h2>
             <ol>
@@ -21,7 +20,7 @@
         <img src="https://handlers.education.launchcode.org/static/planets.json">
         </div> 
         <div id="launchForm">
-            <form action="/" method="GET">
+            <form>
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
                     <label>Pilot Name <input type="text" name="pilotName" id="pilotName"/></label>
                 </div>
@@ -34,9 +33,8 @@
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
                     <label>Cargo Mass (kg) <input type="text" name="cargoMass" id="cargoMass"/></label>
                 </div>
-                <button id="formSubmit">Submit</button>
-            </form>          
-
+                <button id="formSubmit" type="submit">Submit</button>
+            </form>
         </div>
         <div id="launchStatusCheck">
             <h2 id="launchStatus">Awaiting Information Before Launch</h2>
